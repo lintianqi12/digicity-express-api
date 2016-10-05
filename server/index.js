@@ -32,7 +32,10 @@ app.get('/posts', function(req, res) {
 })
 
 app.get('/post/:id', function(req, res) {
-  res.send(req.params.id)
+  Post.findById({_id:req.params.id},function(err,doc){
+    if(err) return res.send('出错了');
+    res.json({post: doc})
+  })
 })
 
 app.post('/posts/', function(req, res) {
