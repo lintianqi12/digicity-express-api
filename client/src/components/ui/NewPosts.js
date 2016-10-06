@@ -23,6 +23,7 @@ class NewPosts extends Component {
 
   NewPosts(data){
     axios.post('http://localhost:3000/posts',data)
+    // POST /posts  according to REST api structrue
     .then(res => {
       console.log(res.data.message);
       this.context.router.push('/')

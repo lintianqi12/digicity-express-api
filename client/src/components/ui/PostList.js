@@ -33,22 +33,22 @@ export default class PostList extends Component {
         width:'80px',
         height:'30px',
         margin:'20px auto',
-        border:'2px solid deeppink',
+        border:'2px solid rgb(255, 64, 129)',
         borderRadius:'5px',
         textDecoration:'none',
-        color:'deeppink',
+        color:'rgb(255, 64, 129)',
         textAlign:'center',
         lineHeight:'30px',
         ':hover': {
           color:'#fff',
-          backgroundColor:'deeppink'
+          backgroundColor:'rgb(255, 64, 129)'
         }
       },
       btn2:{
         display:'block',
         width:'70px',
         height:'22px',
-        backgroundColor:'deeppink',
+        backgroundColor:'rgb(255, 64, 129)',
         borderRadius:'11px',
         textDecoration:'none',
         color:'#fff',
