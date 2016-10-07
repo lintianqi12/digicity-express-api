@@ -75,6 +75,20 @@ use digicity-express-api
 db.dropDatabase()
 ```
 
+## Atom 查找关键字 ctrl + shift + f
+
 ## Hello Ada
 
 ![](https://github.com/happypeter/digicity-express-api/blob/master/doc/img/001-ada.png?raw=true)
+
+
+# > 用 JS 代码操作 mongodb
+
+我们主要基于一个 JS 库的帮助 ， [mongoose](http://mongoosejs.com/) ，它可以作为 npm 的包来安装
+
+
+解释一下，一个**JS 库** 就是一组 **JS 接口** 的集合。
+
+库，英文对应 library 。
+
+![](https://github.com/happypeter/digicity-express-api/raw/master/doc/img/002-mongoose.png?raw=true)
