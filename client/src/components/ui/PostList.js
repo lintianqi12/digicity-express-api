@@ -54,7 +54,8 @@ export default class PostList extends Component {
         color:'#fff',
         textAlign:'center',
         lineHeight:'22px',
-        margin:'10px 0'
+        margin:'10px 5px',
+        float:'left'
       }
     }
   }
@@ -75,6 +76,7 @@ export default class PostList extends Component {
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
           <Link to={`/post/${post._id}`} style={styles.btn2}>查看</Link>
+          <Link to={`/post/${post._id}/edit`} style={styles.btn2}>编辑</Link>
         </div>
       )
     }, this.state.posts);

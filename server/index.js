@@ -13,7 +13,7 @@ app.use(cors());
 
 //链接数据库和服务器端
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/express-api');
+mongoose.connect('mongodb://localhost:27017/digicity-express-api');
 
 
 var Post = require('./models/post');
