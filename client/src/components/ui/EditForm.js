@@ -62,14 +62,11 @@ class EditForm extends React.Component {
     };
   }
   handleSubmit(e){
-    e.preventDefault(); // refresh is not for SPA(Single Page App)
+    e.preventDefault();
     let title = this.refs.title.value;
     let category = this.refs.category.value;
     let content = this.refs.content.value;
-    if(title.length==0){
-      alert('内容不能为空');
-      return;
-    }
+
     console.log({title,category,content});
     this.props.publishPost({title,category,content});
     //http://babeljs.cn/repl/# you can try es6 Here

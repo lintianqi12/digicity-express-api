@@ -11,6 +11,8 @@ module.exports = function(app) {
       res.json({ posts: posts})
     });
   })
+
+  //打开一篇文章
   app.get('/post/:id', function(req, res) {
     Post.findById({_id:req.params.id},function (err,doc) {
       if (err) return res.send('出错了');
@@ -18,11 +20,35 @@ module.exports = function(app) {
     })
   })
 
+  //更新文章
   app.put('/post/:id', function(req, res){
-    console.log(req.params.id);
-    res.json({peter:"hello"})
+    Post.findById({_id: req.params.id}, function(err, post) {
+      if (err) return res.status(500).json({error:  err.message});
+      for (prop in req.body) {
+        post[prop] = req.body[prop];
+      }
+      post.save(function(err) {
+        if (err) return res.status(500).json({error: err.message});
+        res.json({
+          message: "文章更新成功了！"
+        });
+      });
+    });
   })
 
+  // 删除文章
+  app.delete('/posts/:id', function(req, res) {
+    Post.findById({_id: req.params.id}, function(err, post) {
+      console.log(post);
+      post.remove(function(){
+        res.json({
+          message: '文章删除成功了！'
+        });
+      });
+    });
+  })
+
+  // 新建文章
   app.post('/posts', function(req, res) {
     // res.send('the post title is: ' + req.body.title)
     console.log(req.body);

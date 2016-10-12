@@ -3,6 +3,8 @@ import map from 'lodash/fp/map';
 import axios from 'axios';
 import { Link } from 'react-router';
 import Radium from 'radium';
+import Settings from '../../settings';
+import filter from 'lodash/fp/filter';
 
 
 export default class PostList extends Component {
@@ -61,13 +63,29 @@ export default class PostList extends Component {
   }
   componentWillMount() {
     //  Promise
-    axios.get('http://localhost:3000/posts').then(res => {
+    axios.get(`${Settings.host}/posts`).then(res => {
       console.log('axios');
       this.setState({
         posts: res.data.posts
       });
       console.log(this.state.posts);
     });
+  }
+
+  filterPosts(id) {
+     const posts = filter((post) => {
+       return post._id !== id
+     }, this.state.posts);
+
+     this.setState({ posts: posts })
+  }
+  handleClick(value){
+    //REST
+    axios.delete(`${Settings.host}/posts/${value}`)
+    .then(res => {
+       console.log('filering..!');
+       this.filterPosts(value);
+    })
   }
   render() {
     const styles = this.getStyles();
@@ -77,9 +95,11 @@ export default class PostList extends Component {
           <div style={styles.title}>{post.title}</div>
           <Link to={`/post/${post._id}`} style={styles.btn2}>查看</Link>
           <Link to={`/post/${post._id}/edit`} style={styles.btn2}>编辑</Link>
+          <Link to={''} style={styles.btn2} onClick={this.handleClick.bind(this, post._id)}>删除</Link>
         </div>
       )
     }, this.state.posts);
+
     return(
       <div>
         <Link to='/wirte' style={styles.btn}>写文章</Link>

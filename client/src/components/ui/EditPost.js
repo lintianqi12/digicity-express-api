@@ -5,6 +5,18 @@ import EditForm from './EditForm';
 import isEmpty from 'lodash/fp/isEmpty';
 
 class EditPost extends React.Component {
+  getStyles() {
+    return {
+      content: {
+        width: '100%',
+        maxWidth: '600px',
+        margin: '30px auto',
+        backgroundColor: '#fff',
+        borderRadius: '10px',
+        boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
+      }
+    };
+  }
   constructor(){
     super();
     this.state={
@@ -23,22 +35,12 @@ class EditPost extends React.Component {
     })
   }
   publishPost(data){
+    //REST
     var id = this.props.params.id;
-    axios.put(`${Settings.host}/post/${id}`).then(res => {
-      console.log(res.data);
+    axios.put(`${Settings.host}/post/${id}`,data)
+    .then(res => {
+      this.context.router.push('/')
     })
-  }
-  getStyles() {
-    return {
-      content: {
-        width: '100%',
-        maxWidth: '600px',
-        margin: '30px auto',
-        backgroundColor: '#fff',
-        borderRadius: '10px',
-        boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px'
-      }
-    };
   }
   render () {
     const styles = this.getStyles();
@@ -49,5 +51,9 @@ class EditPost extends React.Component {
     )
   }
 }
+
+EditPost.contextTypes = {
+   router: React.PropTypes.object
+};
 
 export default EditPost;
